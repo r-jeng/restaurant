@@ -6,7 +6,18 @@ import ReservationCard from "./components/ReservationCard";
 
 function App() {
 
-  const reservations = useSelector((state: RootState) => state.reservations.value)
+  const [reservationNameInput, setReservationNameInput] = useState("");
+
+  const reservations = useSelector(
+    (state: RootState) => state.reservations.value
+  );
+
+  const handleAddReservations = () => {
+    // handles adding empty strings to our state
+    // if string is empty just return / by default it'll return falsey
+    // if string is not empty return true
+    if (!reservationNameInput) return;
+  };
 
   return (
     <div className="App">
@@ -31,8 +42,11 @@ function App() {
             <div className="customer-foods-container">
               <div className="customer-food"></div>
               <div className="customer-food-input-container">
-                <input />
-                <button>Add</button>
+                <input
+                  value={reservationNameInput}
+                  onChange={(e) => setReservationNameInput(e.target.value)}
+                />
+                <button onClick={handleAddReservations}>Add</button>
               </div>
             </div>
           </div>
