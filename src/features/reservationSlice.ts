@@ -17,6 +17,9 @@ export const reservationsSlice = createSlice({
     addReservation: (state, action: PayloadAction<string>) => {
       state.value.push(action.payload);
     },
+    removeReservation: (state, action: PayloadAction<number>) =>{
+      state.value.splice(action.payload, 1);
+    },
   },
 });
 
