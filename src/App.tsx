@@ -1,8 +1,10 @@
+import { set } from "immer/dist/internal";
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./App.css";
 import { RootState } from "./app/store";
 import ReservationCard from "./components/ReservationCard";
+import { addReservation } from "./features/reservationSlice";
 
 function App() {
 
@@ -12,11 +14,15 @@ function App() {
     (state: RootState) => state.reservations.value
   );
 
+  const dispatch = useDispatch();
+
   const handleAddReservations = () => {
     // handles adding empty strings to our state
     // if string is empty just return / by default it'll return falsey
     // if string is not empty return true
     if (!reservationNameInput) return;
+    dispatch(addReservation(reservationNameInput));
+    setReservationNameInput("");
   };
 
   return (
@@ -32,8 +38,11 @@ function App() {
             </div>
           </div>
           <div className="reservation-input-container">
-            <input />
-            <button>Add</button>
+            <input
+              value={reservationNameInput}
+              onChange={(e) => setReservationNameInput(e.target.value)}
+            />
+            <button onClick={handleAddReservations}>Add</button>
           </div>
         </div>
         <div className="customer-food-container">
@@ -42,11 +51,8 @@ function App() {
             <div className="customer-foods-container">
               <div className="customer-food"></div>
               <div className="customer-food-input-container">
-                <input
-                  value={reservationNameInput}
-                  onChange={(e) => setReservationNameInput(e.target.value)}
-                />
-                <button onClick={handleAddReservations}>Add</button>
+                <input />
+                <button>Add</button>
               </div>
             </div>
           </div>
