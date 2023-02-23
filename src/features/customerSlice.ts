@@ -1,5 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+interface AddFoodToCustomerPayload {
+  food: string;
+  id: string;
+}
+
 interface CustomerState {
   // value key is an array of Customer object
   value: Customer[]
@@ -22,10 +27,19 @@ export const customerSlice = createSlice({
     // add methods here to update state
     addCustomer: (state, action: PayloadAction<Customer>) => {
       state.value.push(action.payload);
+    },
+    addFoodToCustomer: (state, action: PayloadAction<AddFoodToCustomerPayload>) => {
+      // filter customer by id
+      // inject into specific users food array
+      state.value.forEach((customer => {
+        if (customer.id === action.payload.id) {
+          customer.food.push(action.payload.food)
+        }
+      }))
     }
   },
 });
 
-export const { addCustomer } = customerSlice.actions;
+export const { addCustomer, addFoodToCustomer } = customerSlice.actions;
 
 export default customerSlice.reducer;
