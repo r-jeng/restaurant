@@ -1,6 +1,8 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { removeReservation } from '../features/reservationSlice';
+import { addCustomer } from "../features/customerSlice";
+import { v4 as uuid } from "uuid";
 
 interface ReservationCardTypes {
   name: string,
@@ -16,6 +18,11 @@ export default function ReservationCard({name, index}: ReservationCardTypes) {
       className="reservation-card-container"
       onClick={() => {
         dispatch(removeReservation(index))
+        dispatch(addCustomer({
+          id: uuid(),
+          name,
+          food: []
+        }));
       }}
     >
      {name}
