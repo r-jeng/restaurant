@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ReservationState {
-  // value key is an array of strings
+  // key is an array of strings
   value: string[]
 }
 

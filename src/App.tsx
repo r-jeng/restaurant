@@ -22,9 +22,7 @@ function App() {
   const dispatch = useDispatch();
 
   const handleAddReservations = () => {
-    // handles adding empty strings to our state
-    // if string is empty just return / by default it'll return falsey
-    // if string is not empty return true
+    // handles adding empty strings to the state
     if (!reservationNameInput) return;
     dispatch(addReservation(reservationNameInput));
     setReservationNameInput("");

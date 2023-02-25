@@ -6,7 +6,6 @@ interface AddFoodToCustomerPayload {
 }
 
 interface CustomerState {
-  // value key is an array of Customer object
   value: Customer[]
 }
 
@@ -29,8 +28,7 @@ export const customerSlice = createSlice({
       state.value.push(action.payload);
     },
     addFoodToCustomer: (state, action: PayloadAction<AddFoodToCustomerPayload>) => {
-      // filter customer by id
-      // inject into specific users food array
+      // filter customer by id specific users food array
       state.value.forEach((customer => {
         if (customer.id === action.payload.id) {
           customer.food.push(action.payload.food)
