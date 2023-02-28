@@ -5,14 +5,14 @@ interface AddFoodToCustomerPayload {
   id: string;
 }
 
-interface CustomerState {
-  value: Customer[]
-}
-
 interface Customer {
   id: string;
   name: string;
   food: string[];
+}
+
+interface CustomerState {
+  value: Customer[]
 }
 
 const initialState: CustomerState = {
